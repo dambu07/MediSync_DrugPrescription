@@ -13,6 +13,9 @@ drugs_dict = pickle.load(open('drugs_dict.pkl','rb'))
 drugs = DataFrame(drugs_dict)
 
 
+# Header
+st.header("This is a header")
+
 # Dropdown for selecting condition
 condition_options = list(drugs['condition'].value_counts().index)
 selected_condition = st.selectbox('Select a Condition:', condition_options)
@@ -75,3 +78,20 @@ if st.button('Show top drugs'):
 
 
 
+# Popular conditions
+popular_conditions = ['Birth Control', 'Depression', 'Pain', 'Anxiety', 'Acne', 'Bipolar Disorde',
+                       'Insomnia', 'Weight Loss', 'Obesity', 'ADHD', 'Diabetes, Type 2',
+                       'Emergency Contraception', 'High Blood Pressure', 'Migrane']
+
+
+# Filter data based on popular conditions
+conditions = drugs[drugs['condition'].isin(popular_conditions)]
+
+
+# Create a bar plot
+fig, ax = plt.subplots(figsize=(10, 6))
+sns.barplot(x=conditions['condition'], y=conditions['rating'], hue=conditions['eff_score'], palette='autumn', ax=ax)
+plt.title('Conditions vs Effective Number of Drugs')
+plt.xticks(rotation=90)
+plt.ylabel(' ')
+st.pyplot(fig)
