@@ -4,6 +4,6 @@ pandas==1.5.3
 seaborn==0.12.2
 matplotlib==3.6.3
 Pillow==9.4.0
-numpy==1.24.3
-setuptools==65.5.1  # Includes distutils
+numpy==1.23.5  # Downgrade for better compatibility without building from source
+setuptools==65.5.1
 
